@@ -1,2 +1,8 @@
-# Fail-Over-dan-Load-Balance
-Cara Setting Lebih 1 ISP
+- Konsep Fail Over & Load Balance
+- Konfigurasi Fail Over
+- Check Gateway
+- Load Balance ECMP
+- Load Balance Routing Mark (Route Rules)
+- Konsep Main Routing
+- Load Balance Routing Mark (Firewall Mangle)
+- Address List untuk Mangle

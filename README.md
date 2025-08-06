@@ -8,7 +8,7 @@
   ip route set 0 check-gateway=ping
   ``` 
 - **Load Balance ECMP**
-  <br>Pembagian paket secara acak
+  <br>Pembagian paket/jalur koneksi internet secara acak dan tidak bisa ditentukan
   <br>Settingan routing (1 dst-address dan beberapa gateway) dengan pembagian routing sama rata
   <br>
   <br>cara hapus gateway lebih dari satu
@@ -26,7 +26,7 @@
   maka 192.168.111.1 penggunaan gateway 2x lebih banyak dari pada 192.168.111.1
    <br>
 - **Load Balance Routing Mark (Route Rules)**
-  <br> Pembagian paket secara teratur
+  <br> Pembagian paket/jalur koneksi internet secara teratur terhadap client/pc yang ditentukan
   <br>Load Balance Routing Mark adalah Pengarahan/Pembagian routing ke beberapa ISP sesuai dengan setingan yang telah ditentukan
   <br> Cara membuat rule
   ```
@@ -54,5 +54,29 @@
   ```
   ip route set 2 gateway=192.168.122.1
   ```
+  Cara enable route di baris ke 2
+  ```
+  ip route enable 2
+  ```
 - **Load Balance Routing Mark (Firewall Mangle)**
+  <br> Pembagian jalur paket/koneksi menggunakan firewal mangle
+  <br> langkah-langkahnya IP->Firewall->Manggle
+<br>General
+  - Chain = prerouting
+  - src address = 192.168.1.254
+  <br>Action
+  - Action = mark routing
+  - New Routing Mark = mangle_pc1
+<br>Tampilan di Winbox
+<img width="792" height="234" alt="Image" src="https://github.com/user-attachments/assets/ea5364df-d8f4-42f7-aa07-0e2bf37b260c" />
+
+**Kelebihan** Firewall Mangle dibandingkan Routes Rules adalah bisa menandai paket berdasarkan protokol, misalnya https lewat ISP1 dan http ke ISP2 atau email lewat ISP1 youtube lewat ISP2
+<br> kemudian setting route IP->route
+- Dst address = 0.0.0.0
+- Gateway = 192.168.111.1
+- Routing Mark = mangle_pc1
+  
+<br>Tampilan Winbox
+<img width="1121" height="325" alt="Image" src="https://github.com/user-attachments/assets/14b08edf-e536-4c89-8e6d-0680b671123f" />
+
 - **Address List untuk Mangle**

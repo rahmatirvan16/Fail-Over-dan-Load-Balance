@@ -8,8 +8,10 @@
   ip route set 0 check-gateway=ping
   ``` 
 - **Load Balance ECMP**
+  <br>Pembagian paket secara acak
   <br>Settingan routing (1 dst-address dan beberapa gateway) dengan pembagian routing sama rata
-  cara hapus gateway lebih dari satu
+  <br>
+  <br>cara hapus gateway lebih dari satu
   ```
   ip route remove 0,1
   ```
@@ -17,20 +19,40 @@
   ```
   ip route add gateway=192.168.111.1,192.168.122.1
   ```
-  Jika salah satu gateway penggunaannya lebih besar maka rubah dengan langkah berikut
+  Jika salah satu gateway penggunaannya ingin lebih besar atau 2x maka rubah dengan langkah berikut
   ```
   ip route set 0 gateway=192.168.122.1,192.168.111.1,192.168.111.1
   ```
   maka 192.168.111.1 penggunaan gateway 2x lebih banyak dari pada 192.168.111.1
    <br>
 - **Load Balance Routing Mark (Route Rules)**
-  Berbeda dangan load balance ECMP yang pembagian paket secara acak,
-  <br>Load Balance Routing Mark adalah Pengarahan/Pembagian routing ke beberapa ISI sesuai dengan setingan yang telah ditentukan
-  <br> La
+  <br> Pembagian paket secara teratur
+  <br>Load Balance Routing Mark adalah Pengarahan/Pembagian routing ke beberapa ISP sesuai dengan setingan yang telah ditentukan
+  <br> Cara membuat rule
   ```
-  ip route set 0 gateway=192.168.122.1,192.168.111.1,192.168.111.1
+  ip route rule add src-address=192.168.1.254 table=pc1
   ```
-  
+    ```
+  ip route rule add src-address=192.168.1.253 table=pc2
+  ```
+  Tampilan routing rule di Winbox
+  <img width="780" height="243" alt="Image" src="https://github.com/user-attachments/assets/f59e1d73-ecc8-48cf-8204-cfd9c57a4856" />
+  <br> Cara membuat routing mark Ke ISP1 dan ISP2
+  ```
+  ip route add dst-address=0.0.0.0/0 gateway=192.168.111.1 routing-mark=pc1
+  ```
+    ```
+  ip route add dst-address=0.0.0.0/0 gateway=192.168.122.1 routing-mark=pc2
+  ```
+  <br> Tampilan routing mark di Winbox
+  <img width="1193" height="356" alt="Image" src="https://github.com/user-attachments/assets/32b62c51-0481-4ba0-bd4f-dc09100ec54e" />
 - **Konsep Main Routing**
+  
+  <br> Tampilan di CLI
+  <img width="874" height="205" alt="Image" src="https://github.com/user-attachments/assets/e0bad57e-816a-4077-b36a-f35c3862e084" />
+  <br> Cara rubah gateway di baris ke 2
+  ```
+  ip route set 2 gateway=192.168.122.1
+  ```
 - **Load Balance Routing Mark (Firewall Mangle)**
 - **Address List untuk Mangle**

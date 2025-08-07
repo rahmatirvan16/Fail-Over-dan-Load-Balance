@@ -29,19 +29,21 @@
   <br> Pembagian paket/jalur koneksi internet secara teratur terhadap client/pc yang ditentukan
   <br>Load Balance Routing Mark adalah Pengarahan/Pembagian routing ke beberapa ISP sesuai dengan setingan yang telah ditentukan
   <br> Cara membuat rule
+  
   ```
   ip route rule add src-address=192.168.1.254 table=pc1
   ```
-    ```
+  ```
   ip route rule add src-address=192.168.1.253 table=pc2
   ```
+
   Tampilan routing rule di Winbox
   <img width="800" height="243" alt="Image" src="https://github.com/user-attachments/assets/f59e1d73-ecc8-48cf-8204-cfd9c57a4856" />
   <br> Cara membuat routing mark Ke ISP1 dan ISP2
   ```
   ip route add dst-address=0.0.0.0/0 gateway=192.168.111.1 routing-mark=pc1
   ```
-    ```
+   ```
   ip route add dst-address=0.0.0.0/0 gateway=192.168.122.1 routing-mark=pc2
   ```
   <br> Tampilan routing mark di Winbox

@@ -82,9 +82,21 @@
 ## Address List untuk Mangle
 <br> Mengelompokkan IP
 <br>Pertama Setting Address List untuk melakukan pengelompokkan IP
+
+* name : via_isp1
+* address : 192.168.1.2-192.168.1.100
 <img width="800" height="267" alt="Image" src="https://github.com/user-attachments/assets/e20f9b90-f5c6-4680-a2b3-afd99a16f36f" />
 <br>Kedua Setting Mangle dengan src. address list yang sesuai dengan address list dibuat
+
+* chain = prerouting
+* src. address list = via_isp1
+* action = mark routing
+* new routing mark = ISP1
 <img width="800" height="264" alt="Image" src="https://github.com/user-attachments/assets/f245e437-12b6-4b23-8222-8fef436e0a97" />
 <br>Ketiga Setting Routing dengan Routing Mark sesuai Mangle
+
+* dst. address = 0.0.0.0/24
+* gateway = 192.168.111.1
+* routing mark = ISP1
 <img width="800" height="329" alt="image" src="https://github.com/user-attachments/assets/a114ab95-5486-4585-9cf1-b9d6ec9c9374" />
 

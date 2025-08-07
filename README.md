@@ -1,6 +1,8 @@
 ## Konsep Fail Over & Load Balance
   <br>Fail Over adalah Settingan Mikrotik dengan Setingan 1 Aktif dan 1 Backup
   <br>Load Balance adalah Setingan Mikrotik dengan kedua ISP Aktif (sebgaian ke ISP Pertama dan sebagian ke ISP Kedua)
+  <br><img width="582" height="631" alt="image" src="https://github.com/user-attachments/assets/ee62ad8f-374c-4468-9b04-64b7254b66e1" />
+
 ## Konfigurasi Fail Over
 ## Check Gateway
   <br>Fitur untuk setting automasi ISP lebih dari 1 ke ISP aktif, jika saat ping menghasilkan time out
